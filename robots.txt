@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://seopilot.tools/sitemap.xml

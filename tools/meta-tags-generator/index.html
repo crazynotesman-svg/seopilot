@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Meta Tags Generator — HTML, Open Graph, Twitter Card | SEOPilot</title>
+<meta name="description" content="Generate perfect HTML meta tags including Open Graph and Twitter Card markup. One-click copy to clipboard. Free, no sign-up required.">
+<link rel="canonical" href="https://seopilot.tools/tools/meta-tags-generator/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Free Meta Tags Generator — HTML, Open Graph, Twitter Card | SEOPilot">
+<meta property="og:description" content="Generate perfect HTML meta tags including Open Graph and Twitter Card markup. One-click copy to clipboard.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Meta Tags Generator",
+  "applicationCategory": "SEO Tools",
+  "operatingSystem": "Web",
+  "description": "Generate complete HTML meta tags including Open Graph and Twitter Card markup.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="/">Home</a> <span class="sep">/</span>
+    <a href="/tools/">Tools</a> <span class="sep">/</span>
+    <span>Meta Tags Generator</span>
+  </div>
+
+  <div class="tool-header">
+    <h1>Free Meta Tags Generator</h1>
+    <p class="tool-desc">Generate complete HTML meta tags for SEO, Open Graph (Facebook/LinkedIn), and Twitter Cards. Fill in the form and get copy-ready code instantly.</p>
+  </div>
+
+  <div class="tool-workspace">
+    <!-- Basic SEO -->
+    <h3 style="font-size:1rem;font-weight:700;margin:0 0 16px;padding-bottom:8px;border-bottom:2px solid var(--primary)">Basic SEO Meta Tags</h3>
+    <div class="form-group">
+      <label for="seoTitle">Page Title</label>
+      <input type="text" id="seoTitle" placeholder="Enter your page title" maxlength="100">
+    </div>
+    <div class="form-group">
+      <label for="seoDesc">Meta Description</label>
+      <textarea id="seoDesc" placeholder="Enter your meta description (140-160 characters recommended)" maxlength="200"></textarea>
+      <div class="char-count" id="seoDescCount">0 / 160</div>
+    </div>
+    <div class="form-group">
+      <label for="seoKeywords">Keywords (comma-separated, optional)</label>
+      <input type="text" id="seoKeywords" placeholder="seo tools, meta tags, website optimization" maxlength="200">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="canonical">Canonical URL</label>
+        <input type="text" id="canonical" placeholder="https://example.com/page" maxlength="300">
+      </div>
+      <div class="form-group">
+        <label for="robots">Robots Meta</label>
+        <select id="robots">
+          <option value="index, follow">index, follow</option>
+          <option value="noindex, follow">noindex, follow</option>
+          <option value="index, nofollow">index, nofollow</option>
+          <option value="noindex, nofollow">noindex, nofollow</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Open Graph -->
+    <h3 style="font-size:1rem;font-weight:700;margin:28px 0 16px;padding-bottom:8px;border-bottom:2px solid #1877f2">Open Graph Tags (Facebook, LinkedIn)</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="ogTitle">OG Title</label>
+        <input type="text" id="ogTitle" placeholder="Same as page title or custom" maxlength="100">
+      </div>
+      <div class="form-group">
+        <label for="ogType">OG Type</label>
+        <select id="ogType">
+          <option value="website">website</option>
+          <option value="article">article</option>
+          <option value="product">product</option>
+          <option value="profile">profile</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="ogDesc">OG Description</label>
+      <textarea id="ogDesc" placeholder="Description for social media sharing" maxlength="300"></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="ogImage">OG Image URL</label>
+        <input type="text" id="ogImage" placeholder="https://example.com/image.jpg (1200x630 recommended)" maxlength="300">
+      </div>
+      <div class="form-group">
+        <label for="ogUrl">OG URL</label>
+        <input type="text" id="ogUrl" placeholder="https://example.com/page" maxlength="300">
+      </div>
+    </div>
+
+    <!-- Twitter Card -->
+    <h3 style="font-size:1rem;font-weight:700;margin:28px 0 16px;padding-bottom:8px;border-bottom:2px solid #1da1f2">Twitter Card Tags</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="twitterCard">Card Type</label>
+        <select id="twitterCard">
+          <option value="summary_large_image">summary_large_image</option>
+          <option value="summary">summary</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="twitterSite">Twitter @username (optional)</label>
+        <input type="text" id="twitterSite" placeholder="@yourhandle" maxlength="50">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="twitterTitle">Twitter Title</label>
+      <input type="text" id="twitterTitle" placeholder="Same as OG title or custom" maxlength="100">
+    </div>
+    <div class="form-group">
+      <label for="twitterDesc">Twitter Description</label>
+      <textarea id="twitterDesc" placeholder="Description for Twitter sharing" maxlength="300"></textarea>
+    </div>
+
+    <div style="display:flex;gap:8px;margin:20px 0">
+      <button class="btn btn-primary" onclick="generateMetaTags()">Generate Meta Tags</button>
+      <button class="btn btn-secondary" onclick="clearMetaForm()">Clear All</button>
+    </div>
+
+    <!-- Output -->
+    <div class="result-area hidden" id="resultArea">
+      <div class="result-header">
+        <span class="result-title">Generated Meta Tags</span>
+        <div class="result-actions">
+          <button class="btn btn-sm btn-secondary" onclick="copyMetaCode()">Copy Code</button>
+        </div>
+      </div>
+      <pre class="code-block" id="metaOutput"></pre>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>How to Use This Meta Tags Generator</h2>
+    <ol>
+      <li><strong>Fill in Basic SEO fields</strong> — Title, description, keywords, and canonical URL.</li>
+      <li><strong>Add Open Graph tags</strong> — These control how your page appears when shared on Facebook, LinkedIn, and other platforms.</li>
+      <li><strong>Configure Twitter Cards</strong> — Set how your content displays on Twitter (X).</li>
+      <li><strong>Generate & Copy</strong> — Click "Generate Meta Tags" and copy the HTML code into your page's <code>&lt;head&gt;</code> section.</li>
+    </ol>
+
+    <h2>Why Meta Tags Matter</h2>
+    <p>Meta tags are invisible HTML elements that tell search engines and social platforms what your page is about. Good meta tags improve your click-through rate from search results and make your content look professional when shared on social media. Without them, platforms will auto-generate previews that may not accurately represent your content.</p>
+
+    <h2>Meta Tags Explained</h2>
+    <ul>
+      <li><strong>Title Tag</strong> — The most important on-page SEO element. Appears as the clickable link in search results.</li>
+      <li><strong>Meta Description</strong> — The snippet below your title in search results. Doesn't directly affect rankings but significantly impacts CTR.</li>
+      <li><strong>Open Graph Tags</strong> — Control how your page looks when shared on Facebook, LinkedIn, Slack, and most messaging apps.</li>
+      <li><strong>Twitter Cards</strong> — Similar to Open Graph but specifically for Twitter/X sharing.</li>
+      <li><strong>Canonical URL</strong> — Tells search engines which URL is the primary version when duplicate content exists.</li>
+      <li><strong>Robots Meta</strong> — Controls whether search engines should index the page and follow its links.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">Do meta tags still matter for SEO in 2026?</div>
+      <div class="faq-answer">Yes. While meta keywords are largely ignored by Google, title tags and meta descriptions remain critical. Title tags are a direct ranking factor, and well-written descriptions improve click-through rates, which indirectly helps rankings.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What's the difference between OG tags and Twitter Cards?</div>
+      <div class="faq-answer">Open Graph tags are used by Facebook, LinkedIn, and most social platforms. Twitter has its own card system but falls back to OG tags if Twitter-specific tags aren't present. It's best to include both.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What size should my OG image be?</div>
+      <div class="faq-answer">The recommended size is 1200x630 pixels with an aspect ratio of 1.91:1. This ensures your image looks good on both desktop and mobile feeds across all platforms.</div>
+    </div>
+
+    <h2 style="margin-top:32px">Related Tools</h2>
+    <ul>
+      <li><a href="/tools/serp-preview/">SERP Preview Tool</a> — Preview how your meta tags look in Google search results.</li>
+      <li><a href="/tools/ai-title-generator/">AI Title Generator</a> — Generate SEO-optimized titles for your pages.</li>
+    </ul>
+  </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/utils.js"></script>
+<script src="/assets/js/components.js"></script>
+<script>
+(function() {
+  var descInput = document.getElementById('seoDesc');
+  var descCount = document.getElementById('seoDescCount');
+
+  descInput.addEventListener('input', function() {
+    var len = this.value.length;
+    descCount.textContent = len + ' / 160';
+    descCount.className = 'char-count';
+    if (len > 160) descCount.classList.add('error');
+    else if (len >= 140) descCount.classList.add('warn');
+  });
+
+  window.generateMetaTags = function() {
+    var tags = [];
+
+    // Basic SEO
+    var title = document.getElementById('seoTitle').value.trim();
+    var desc = descInput.value.trim();
+    var keywords = document.getElementById('seoKeywords').value.trim();
+    var canonical = document.getElementById('canonical').value.trim();
+    var robots = document.getElementById('robots').value;
+
+    if (title) {
+      tags.push('<title>' + escapeHtml(title) + '</title>');
+    }
+    if (desc) {
+      tags.push('<meta name="description" content="' + escapeHtml(desc) + '">');
+    }
+    if (keywords) {
+      tags.push('<meta name="keywords" content="' + escapeHtml(keywords) + '">');
+    }
+    tags.push('<meta name="robots" content="' + robots + '">');
+    if (canonical) {
+      tags.push('<link rel="canonical" href="' + escapeHtml(canonical) + '">');
+    }
+
+    // Open Graph
+    var ogTitle = document.getElementById('ogTitle').value.trim() || title;
+    var ogDesc = document.getElementById('ogDesc').value.trim() || desc;
+    var ogImage = document.getElementById('ogImage').value.trim();
+    var ogUrl = document.getElementById('ogUrl').value.trim() || canonical;
+    var ogType = document.getElementById('ogType').value;
+
+    if (ogTitle) {
+      tags.push('<meta property="og:title" content="' + escapeHtml(ogTitle) + '">');
+    }
+    if (ogDesc) {
+      tags.push('<meta property="og:description" content="' + escapeHtml(ogDesc) + '">');
+    }
+    if (ogImage) {
+      tags.push('<meta property="og:image" content="' + escapeHtml(ogImage) + '">');
+    }
+    if (ogUrl) {
+      tags.push('<meta property="og:url" content="' + escapeHtml(ogUrl) + '">');
+    }
+    tags.push('<meta property="og:type" content="' + ogType + '">');
+    if (document.getElementById('seoTitle').value.trim()) {
+      tags.push('<meta property="og:site_name" content="' + escapeHtml(document.getElementById('seoTitle').value.trim()) + '">');
+    }
+
+    // Twitter
+    var twitterCard = document.getElementById('twitterCard').value;
+    var twitterSite = document.getElementById('twitterSite').value.trim();
+    var twitterTitle = document.getElementById('twitterTitle').value.trim() || ogTitle;
+    var twitterDesc = document.getElementById('twitterDesc').value.trim() || ogDesc;
+
+    tags.push('<meta name="twitter:card" content="' + twitterCard + '">');
+    if (twitterSite) {
+      tags.push('<meta name="twitter:site" content="' + escapeHtml(twitterSite) + '">');
+    }
+    if (twitterTitle) {
+      tags.push('<meta name="twitter:title" content="' + escapeHtml(twitterTitle) + '">');
+    }
+    if (twitterDesc) {
+      tags.push('<meta name="twitter:description" content="' + escapeHtml(twitterDesc) + '">');
+    }
+    if (ogImage) {
+      tags.push('<meta name="twitter:image" content="' + escapeHtml(ogImage) + '">');
+    }
+
+    document.getElementById('metaOutput').textContent = tags.join('\n');
+    document.getElementById('resultArea').classList.remove('hidden');
+  };
+
+  window.copyMetaCode = function() {
+    var code = document.getElementById('metaOutput').textContent;
+    if (!code) return;
+    copyToClipboard(code).then(function(ok) {
+      showToast(ok ? 'Code copied to clipboard!' : 'Copy failed. Please select and copy manually.', ok ? 'success' : 'error');
+    });
+  };
+
+  window.clearMetaForm = function() {
+    var ids = ['seoTitle','seoDesc','seoKeywords','canonical','ogTitle','ogDesc','ogImage','ogUrl','twitterSite','twitterTitle','twitterDesc'];
+    ids.forEach(function(id) { document.getElementById(id).value = ''; });
+    document.getElementById('robots').value = 'index, follow';
+    document.getElementById('ogType').value = 'website';
+    document.getElementById('twitterCard').value = 'summary_large_image';
+    descCount.textContent = '0 / 160';
+    descCount.className = 'char-count';
+    document.getElementById('resultArea').classList.add('hidden');
+  };
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+})();
+</script>
+</body>
+</html>

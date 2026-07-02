@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free AI Blog Title Generator — SEO Headlines Powered by AI | SEOPilot</title>
+<meta name="description" content="Generate 10 SEO-optimized, click-worthy blog post titles using AI. Choose content type, audience, and tone. Powered by DeepSeek AI. Free, no sign-up.">
+<link rel="canonical" href="https://seopilot.tools/tools/ai-title-generator/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Free AI Blog Title Generator — SEO Headlines Powered by AI | SEOPilot">
+<meta property="og:description" content="Generate 10 SEO-optimized blog post titles using AI. Choose content type, audience, and tone for tailored results.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AI Title Generator",
+  "applicationCategory": "SEO Tools",
+  "operatingSystem": "Web",
+  "description": "Generate SEO-optimized blog post titles using AI. Powered by DeepSeek.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="/">Home</a> <span class="sep">/</span>
+    <a href="/tools/">Tools</a> <span class="sep">/</span>
+    <span>AI Title Generator</span>
+  </div>
+
+  <div class="tool-header">
+    <h1>Free AI Blog Title Generator</h1>
+    <p class="tool-desc">Generate 10 creative, SEO-optimized blog post titles in seconds. Powered by DeepSeek AI. Choose your content type, target audience, and preferred tone for tailored results.</p>
+  </div>
+
+  <div class="tool-workspace">
+    <div class="form-group">
+      <label for="aiKeyword">Primary Keyword or Topic *</label>
+      <input type="text" id="aiKeyword" placeholder="e.g. intermittent fasting benefits" maxlength="100">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="aiContentType">Content Type</label>
+        <select id="aiContentType">
+          <option value="how-to">How-to / Tutorial</option>
+          <option value="listicle">Listicle</option>
+          <option value="review">Review</option>
+          <option value="comparison">Comparison / vs</option>
+          <option value="guide">Guide</option>
+          <option value="news">News / Trending</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="aiAudience">Target Audience</label>
+        <select id="aiAudience">
+          <option value="beginners">Beginners</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="experts">Experts</option>
+          <option value="general">General</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="aiTone">Tone</label>
+      <select id="aiTone">
+        <option value="professional">Professional / Authoritative</option>
+        <option value="casual">Casual / Conversational</option>
+        <option value="curious">Curiosity-Driven (Clickbait-style)</option>
+        <option value="urgent">Urgent / Action-Oriented</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <div class="status-bar hidden" id="apiStatus"></div>
+    </div>
+
+    <button class="btn btn-primary btn-lg btn-full" id="genBtn" onclick="generateTitles()">
+      Generate 10 Titles
+    </button>
+
+    <!-- Results -->
+    <div class="result-area hidden" id="titleResults" style="margin-top:20px">
+      <div class="result-header">
+        <span class="result-title">Generated Titles</span>
+        <div class="result-actions">
+          <button class="btn btn-sm btn-secondary" onclick="copyAllTitles()">Copy All</button>
+        </div>
+      </div>
+      <div id="titleList" style="display:flex;flex-direction:column;gap:10px"></div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>How to Use This AI Title Generator</h2>
+    <ol>
+      <li><strong>Enter your topic</strong> — Type the main keyword or topic you're writing about.</li>
+      <li><strong>Choose content type</strong> — Select whether it's a how-to, listicle, review, comparison, guide, or news article.</li>
+      <li><strong>Set audience and tone</strong> — Pick who you're writing for and the style of your headlines.</li>
+      <li><strong>Generate & Select</strong> — Click generate, review the 10 AI-crafted titles, and copy your favorites.</li>
+    </ol>
+
+    <h2>Why Great Titles Matter for SEO</h2>
+    <p>Your title is the first thing searchers see in Google results. Research shows that <strong>80% of people read headlines, but only 20% read the rest</strong>. A well-crafted title can double your click-through rate (CTR), which is a positive ranking signal for Google. Our AI generates titles that balance SEO best practices with human psychology — including your keyword naturally while creating curiosity and urgency.</p>
+
+    <h2>Title Formulas That Work</h2>
+    <ul>
+      <li><strong>How-to</strong> — "How to [Achieve Desired Outcome] in [Timeframe]"</li>
+      <li><strong>Listicle</strong> — "[Number] [Adjective] Ways to [Solve Problem]"</li>
+      <li><strong>Comparison</strong> — "[Option A] vs [Option B]: Which Is Better for [Use Case]?"</li>
+      <li><strong>Guide</strong> — "The Ultimate Guide to [Topic] for [Audience]"</li>
+      <li><strong>Mistake-Focused</strong> — "[Number] Common [Topic] Mistakes (And How to Avoid Them)"</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">Which AI model powers this title generator?</div>
+      <div class="faq-answer">This tool is powered by DeepSeek's AI model, which provides high-quality, creative text generation at a very competitive cost. Your keyword and settings are sent to DeepSeek's API for processing and are not stored by us.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How do I configure my own DeepSeek API key?</div>
+      <div class="faq-answer">Edit the <code>assets/js/config.js</code> file in your deployment and set <code>deepseek.apiKey</code> to your key from <a href="https://platform.deepseek.com/api_keys" target="_blank" rel="noopener">platform.deepseek.com</a>. DeepSeek pricing is approximately $0.14 per 1 million input tokens, making this extremely affordable.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can I use the generated titles commercially?</div>
+      <div class="faq-answer">Yes! All titles generated by this tool are yours to use freely for your blog, website, or any commercial purpose. No attribution required.</div>
+    </div>
+
+    <h2 style="margin-top:32px">Related Tools</h2>
+    <ul>
+      <li><a href="/tools/serp-preview/">SERP Preview Tool</a> — See how your titles look in Google search results.</li>
+      <li><a href="/tools/keyword-difficulty/">Keyword Difficulty Checker</a> — Check if your target keyword is realistic to rank for.</li>
+    </ul>
+  </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/utils.js"></script>
+<script src="/assets/js/components.js"></script>
+<script>
+(function() {
+  var cfg = window.SEOPILOT_CONFIG;
+
+  window.generateTitles = function() {
+    var keyword = document.getElementById('aiKeyword').value.trim();
+    if (!keyword) { showToast('Please enter a keyword or topic', 'error'); return; }
+
+    if (!cfg.deepseek.apiKey || cfg.deepseek.apiKey === 'YOUR_DEEPSEEK_API_KEY') {
+      showApiStatus('warning', 'API key not configured. Set your DeepSeek API key in assets/js/config.js');
+      // Fallback: show demo titles
+      showDemoTitles(keyword);
+      return;
+    }
+
+    var btn = document.getElementById('genBtn');
+    var originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Generating with AI...';
+
+    hideApiStatus();
+
+    var contentType = document.getElementById('aiContentType').value;
+    var audience = document.getElementById('aiAudience').value;
+    var tone = document.getElementById('aiTone').value;
+
+    var prompt = 'Generate exactly 10 SEO-optimized blog post titles for the keyword/topic: "' + keyword +
+      '". Content type: ' + contentType + '. Target audience: ' + audience + '. Tone: ' + tone + '.' +
+      ' Each title should be 50-65 characters and include the main keyword naturally. Include a mix of formats like how-to, listicle, question-based, and benefit-driven.' +
+      ' Return ONLY a numbered list from 1 to 10, with each title on a new line. No extra commentary.';
+
+    fetch(cfg.deepseek.apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + cfg.deepseek.apiKey
+      },
+      body: JSON.stringify({
+        model: cfg.deepseek.model || 'deepseek-chat',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: cfg.deepseek.maxTokens || 1024,
+        temperature: cfg.deepseek.temperature || 0.7
+      })
+    })
+    .then(function(res) {
+      if (!res.ok) {
+        return res.json().then(function(err) {
+          throw new Error(err.error ? err.error.message : 'API error ' + res.status);
+        });
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      if (data.choices && data.choices[0] && data.choices[0].message) {
+        var text = data.choices[0].message.content;
+        displayTitles(parseTitles(text), keyword);
+      } else {
+        throw new Error('Unexpected API response format');
+      }
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    })
+    .catch(function(err) {
+      showApiStatus('error', 'AI generation failed: ' + err.message + '. Showing demo titles instead.');
+      showDemoTitles(keyword);
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    });
+  };
+
+  function showDemoTitles(keyword) {
+    var templates = [
+      'The Ultimate Guide to ' + keyword + ' for Beginners',
+      'How to Master ' + keyword + ' in 7 Simple Steps',
+      '10 Proven ' + keyword + ' Tips That Actually Work',
+      'Why ' + keyword + ' Matters More Than You Think',
+      keyword + ': Everything You Need to Know in 2026',
+      '5 Common ' + keyword + ' Mistakes and How to Avoid Them',
+      'The Science Behind ' + keyword + ' Explained Simply',
+      'A Beginner\'s Guide to ' + keyword,
+      'What Experts Don\'t Tell You About ' + keyword,
+      'How ' + keyword + ' Can Transform Your Results'
+    ];
+    displayTitles(templates, keyword);
+  }
+
+  function parseTitles(text) {
+    var lines = text.split('\n').filter(function(l) { return l.trim(); });
+    return lines.map(function(l) {
+      return l.replace(/^\d+[\.\)]\s*/, '').replace(/^["']|["']$/g, '').trim();
+    }).filter(function(l) { return l.length > 5; }).slice(0, 10);
+  }
+
+  function displayTitles(titles, keyword) {
+    var container = document.getElementById('titleList');
+    container.innerHTML = '';
+
+    titles.forEach(function(title, i) {
+      var item = document.createElement('div');
+      item.style.cssText = 'display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:white;border:1px solid var(--border);border-radius:var(--radius);transition:all 0.15s';
+      item.onmouseenter = function() { this.style.borderColor = 'var(--primary)'; this.style.boxShadow = 'var(--shadow)'; };
+      item.onmouseleave = function() { this.style.borderColor = 'var(--border)'; this.style.boxShadow = 'none'; };
+
+      var num = document.createElement('span');
+      num.style.cssText = 'width:28px;height:28px;background:var(--primary-light);color:var(--primary-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0;margin-top:2px';
+      num.textContent = i + 1;
+
+      var content = document.createElement('div');
+      content.style.flex = '1';
+      content.innerHTML = '<div style="font-weight:600;margin-bottom:4px;line-height:1.5">' + escapeHtml(title) + '</div>' +
+        '<div style="font-size:0.75rem;color:var(--text-secondary)">' + title.length + ' characters</div>';
+
+      var copyBtn = document.createElement('button');
+      copyBtn.className = 'btn btn-sm btn-secondary';
+      copyBtn.innerHTML = 'Copy';
+      copyBtn.title = 'Copy this title';
+      copyBtn.style.flexShrink = '0';
+      copyBtn.onclick = function(e) {
+        e.stopPropagation();
+        copyToClipboard(title).then(function(ok) {
+          copyBtn.innerHTML = ok ? 'Copied!' : 'Failed';
+          copyBtn.style.color = ok ? 'var(--success)' : 'var(--error)';
+          setTimeout(function() { copyBtn.innerHTML = 'Copy'; copyBtn.style.color = ''; }, 2000);
+        });
+      };
+
+      item.appendChild(num);
+      item.appendChild(content);
+      item.appendChild(copyBtn);
+      container.appendChild(item);
+    });
+
+    document.getElementById('titleResults').classList.remove('hidden');
+  }
+
+  window.copyAllTitles = function() {
+    var items = document.querySelectorAll('#titleList > div');
+    var titles = [];
+    items.forEach(function(item) {
+      var text = item.querySelector('div[style*="font-weight:600"]');
+      if (text) titles.push(text.textContent);
+    });
+    if (titles.length === 0) return;
+    copyToClipboard(titles.join('\n')).then(function(ok) {
+      showToast(ok ? titles.length + ' titles copied!' : 'Copy failed', ok ? 'success' : 'error');
+    });
+  };
+
+  function showApiStatus(type, msg) {
+    var el = document.getElementById('apiStatus');
+    el.className = 'status-bar ' + type;
+    el.innerHTML = msg;
+    el.classList.remove('hidden');
+  }
+
+  function hideApiStatus() {
+    document.getElementById('apiStatus').classList.add('hidden');
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+})();
+</script>
+</body>
+</html>

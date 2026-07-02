@@ -1,0 +1,14 @@
+# Config with secrets (uncomment if you want to keep API keys out of repo)
+# assets/js/config.js
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Deps (if any added later)
+node_modules/
+package-lock.json

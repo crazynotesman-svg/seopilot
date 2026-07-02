@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free SERP Preview Tool — Check Google Snippet | SEOPilot</title>
+<meta name="description" content="Preview how your page title and meta description will appear in Google search results. Check character limits for desktop and mobile. Free, no sign-up required.">
+<link rel="canonical" href="https://seopilot.tools/tools/serp-preview/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Free SERP Preview Tool — Check Google Snippet | SEOPilot">
+<meta property="og:description" content="Preview how your page looks in Google search results. Check title & description length. Free, no sign-up.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SERP Preview Tool",
+  "applicationCategory": "SEO Tools",
+  "operatingSystem": "Web",
+  "description": "Preview how your page title and meta description will appear in Google search results.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="/">Home</a> <span class="sep">/</span>
+    <a href="/tools/">Tools</a> <span class="sep">/</span>
+    <span>SERP Preview Tool</span>
+  </div>
+
+  <div class="tool-header">
+    <h1>Free SERP Preview Tool</h1>
+    <p class="tool-desc">Preview exactly how your page title and meta description will appear in Google search results. Check character limits, optimize for both desktop and mobile, and make every snippet count.</p>
+  </div>
+
+  <!-- Tool Workspace -->
+  <div class="tool-workspace">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="pageTitle">Page Title</label>
+        <input type="text" id="pageTitle" placeholder="e.g. How to Start a Blog in 2026 — Complete Guide for Beginners" maxlength="80">
+        <div class="char-count" id="titleCount">0 / 60 characters</div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="pageUrl">Page URL</label>
+        <input type="text" id="pageUrl" placeholder="e.g. https://example.com/blog/start-blog" maxlength="200">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="metaDesc">Meta Description</label>
+      <textarea id="metaDesc" placeholder="e.g. Learn how to start a successful blog in 2026. Step-by-step guide covering hosting, content strategy, SEO, and monetization. Perfect for beginners." maxlength="170"></textarea>
+      <div class="char-count" id="descCount">0 / 160 characters</div>
+    </div>
+
+    <div style="display:flex;gap:8px;margin-bottom:24px">
+      <button class="btn btn-primary" onclick="updatePreview()" style="width:auto;padding:8px 16px">Generate Preview</button>
+      <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+    </div>
+
+    <!-- Desktop Preview -->
+    <h3 style="font-size:0.85rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px">Desktop Preview</h3>
+    <div class="serp-preview" id="desktopPreview">
+      <div class="serp-url">
+        <span style="display:inline-block;width:20px;height:20px;background:#f1f3f4;border-radius:50%;flex-shrink:0"></span>
+        <div>
+          <div class="serp-url-breadcrumb" id="desktopUrl">example.com &rsaquo; blog &rsaquo; start-blog</div>
+        </div>
+      </div>
+      <div class="serp-title" id="desktopTitle">How to Start a Blog in 2026 — Complete Guide for Beginners</div>
+      <div class="serp-desc" id="desktopDesc">Learn how to start a successful blog in 2026. Step-by-step guide covering hosting, content strategy, SEO, and monetization. Perfect for beginners.</div>
+    </div>
+
+    <!-- Mobile Preview -->
+    <h3 style="font-size:0.85rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px;margin:24px 0 12px">Mobile Preview</h3>
+    <div class="serp-preview-mobile" id="mobilePreview">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+        <span style="display:inline-block;width:16px;height:16px;background:#f1f3f4;border-radius:50%;flex-shrink:0"></span>
+        <div>
+          <div style="font-size:12px;color:#202124;line-height:1.2" id="mobileUrl">example.com &rsaquo; blog &rsaquo; start-blog</div>
+        </div>
+      </div>
+      <div class="serp-title" id="mobileTitle">How to Start a Blog in 2026 — Complete Guide for Beginners</div>
+      <div class="serp-desc" id="mobileDesc">Learn how to start a successful blog in 2026. Step-by-step guide covering hosting, content strategy, SEO, and...</div>
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="content-section">
+    <h2>How to Use This SERP Preview Tool</h2>
+    <ol>
+      <li><strong>Enter your page title</strong> — Type or paste the title tag you plan to use. Keep it between 50-60 characters for best results.</li>
+      <li><strong>Add your URL</strong> — Enter the full URL of your page. The tool will format it into the breadcrumb style Google uses.</li>
+      <li><strong>Write your meta description</strong> — Craft a compelling description between 140-160 characters that includes your target keyword.</li>
+      <li><strong>Review the previews</strong> — See exactly how your listing will look on both desktop and mobile Google results.</li>
+    </ol>
+
+    <h2>Why SERP Preview Matters for SEO</h2>
+    <p>Your page's appearance in Google search results is your first impression on potential visitors. A well-crafted title and description can significantly increase your click-through rate (CTR), which is a known ranking factor. Google may truncate titles longer than 60 characters and descriptions longer than 160 characters, resulting in incomplete information being shown to searchers.</p>
+    <p>By using this preview tool before publishing, you ensure that your search listings are always complete, compelling, and optimized for maximum clicks.</p>
+
+    <h2>Title Tag Best Practices</h2>
+    <ul>
+      <li>Keep titles between <strong>50-60 characters</strong> to avoid truncation.</li>
+      <li>Place your <strong>primary keyword near the beginning</strong> of the title.</li>
+      <li>Include your <strong>brand name</strong> at the end, separated by a pipe or dash.</li>
+      <li>Make every title unique — duplicate titles confuse search engines.</li>
+      <li>Write for humans first, search engines second — clickable beats keyword-stuffed.</li>
+    </ul>
+
+    <h2>Meta Description Best Practices</h2>
+    <ul>
+      <li>Keep descriptions between <strong>140-160 characters</strong>.</li>
+      <li>Include your <strong>primary keyword</strong> naturally.</li>
+      <li>Write a <strong>clear benefit or call-to-action</strong> that makes searchers want to click.</li>
+      <li>Make every description <strong>unique</strong> for each page.</li>
+      <li>Avoid auto-generated descriptions — Google often rewrites them anyway.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">What is a SERP preview?</div>
+      <div class="faq-answer">A SERP (Search Engine Results Page) preview shows how your web page listing will appear in Google search results, including the title link, URL breadcrumb, and meta description snippet.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What's the ideal title length for Google?</div>
+      <div class="faq-answer">Google typically displays the first 50-60 characters of a title tag. Mobile results may display slightly fewer characters. Titles longer than 60 characters risk being truncated with an ellipsis.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Will Google always use my meta description?</div>
+      <div class="faq-answer">No. Google may rewrite your meta description if it thinks a different snippet from your page content better matches the search query. However, writing a well-crafted meta description still increases the odds Google will use it.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How is this tool different from just looking at Google?</div>
+      <div class="faq-answer">This tool shows you a preview before your page is even published. You can experiment with different titles and descriptions to optimize them without waiting for Google to index your changes.</div>
+    </div>
+
+    <h2 style="margin-top:32px">Related Tools</h2>
+    <ul>
+      <li><a href="/tools/meta-tags-generator/">Meta Tags Generator</a> — Generate complete HTML meta tags including Open Graph markup.</li>
+      <li><a href="/tools/ai-title-generator/">AI Title Generator</a> — Generate 10 SEO-optimized blog post titles using AI.</li>
+    </ul>
+  </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/utils.js"></script>
+<script src="/assets/js/components.js"></script>
+<script>
+(function() {
+  var titleInput = document.getElementById('pageTitle');
+  var urlInput = document.getElementById('pageUrl');
+  var descInput = document.getElementById('metaDesc');
+  var titleCount = document.getElementById('titleCount');
+  var descCount = document.getElementById('descCount');
+
+  // Live character count
+  titleInput.addEventListener('input', function() {
+    var len = this.value.length;
+    titleCount.textContent = len + ' / 60 characters';
+    titleCount.className = 'char-count';
+    if (len > 60) titleCount.classList.add('error');
+    else if (len >= 50) titleCount.classList.add('warn');
+    updatePreview();
+  });
+
+  descInput.addEventListener('input', function() {
+    var len = this.value.length;
+    descCount.textContent = len + ' / 160 characters';
+    descCount.className = 'char-count';
+    if (len > 160) descCount.classList.add('error');
+    else if (len >= 140) descCount.classList.add('warn');
+    updatePreview();
+  });
+
+  urlInput.addEventListener('input', updatePreview);
+
+  // Parse URL into breadcrumb format
+  function formatBreadcrumb(url) {
+    if (!url) return 'example.com › page';
+    try {
+      var u = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      var parts = u.split('/');
+      if (parts.length <= 1) return parts[0];
+      var domain = parts[0].replace(/^www\./, '');
+      var path = parts.slice(1).filter(Boolean).join(' › ');
+      return domain + (path ? ' › ' + path : '');
+    } catch(e) {
+      return url;
+    }
+  }
+
+  // Truncate text at specific length
+  function truncate(text, maxLen) {
+    if (!text) return 'Enter your text above to see the preview...';
+    if (text.length <= maxLen) return text;
+    return text.substring(0, maxLen) + '...';
+  }
+
+  function updatePreview() {
+    var title = titleInput.value.trim();
+    var url = urlInput.value.trim();
+    var desc = descInput.value.trim();
+    var breadcrumb = formatBreadcrumb(url);
+
+    // Desktop
+    document.getElementById('desktopUrl').textContent = breadcrumb;
+    document.getElementById('desktopTitle').textContent = truncate(title || 'Page Title', 60) || 'Page Title';
+    document.getElementById('desktopDesc').textContent = truncate(desc || 'Meta Description', 160) || 'Meta description preview will appear here...';
+
+    // Mobile
+    document.getElementById('mobileUrl').textContent = breadcrumb;
+    document.getElementById('mobileTitle').textContent = truncate(title || 'Page Title', 55) || 'Page Title';
+    document.getElementById('mobileDesc').textContent = truncate(desc || 'Meta Description', 130) || 'Mobile meta description preview...';
+  }
+
+  window.clearAll = function() {
+    titleInput.value = '';
+    urlInput.value = '';
+    descInput.value = '';
+    titleCount.textContent = '0 / 60 characters';
+    titleCount.className = 'char-count';
+    descCount.textContent = '0 / 160 characters';
+    descCount.className = 'char-count';
+    updatePreview();
+  };
+
+  // Initial preview
+  updatePreview();
+})();
+</script>
+</body>
+</html>

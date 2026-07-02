@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Readability Checker — Flesch Reading Ease Score | SEOPilot</title>
+<meta name="description" content="Check your content's readability with Flesch Reading Ease and Flesch-Kincaid Grade Level scores. Get detailed stats on sentence length, passive voice, and more. Free, no sign-up.">
+<link rel="canonical" href="https://seopilot.tools/tools/readability-checker/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Free Readability Checker — Flesch Reading Ease Score | SEOPilot">
+<meta property="og:description" content="Analyze your content's reading level with Flesch scores and get actionable improvement tips.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Readability Checker",
+  "applicationCategory": "SEO Tools",
+  "operatingSystem": "Web",
+  "description": "Check your content's readability with Flesch Reading Ease and Flesch-Kincaid Grade Level scores.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="/">Home</a> <span class="sep">/</span>
+    <a href="/tools/">Tools</a> <span class="sep">/</span>
+    <span>Readability Checker</span>
+  </div>
+
+  <div class="tool-header">
+    <h1>Free Readability Checker</h1>
+    <p class="tool-desc">Analyze your content's readability with Flesch Reading Ease and Flesch-Kincaid Grade Level scores. Get detailed statistics and actionable tips to make your writing clearer and more engaging.</p>
+  </div>
+
+  <div class="tool-workspace">
+    <div class="form-group">
+      <label for="contentText">Paste Your Content</label>
+      <textarea id="contentText" rows="8" placeholder="Paste your blog post, article, or any text content here...&#10;&#10;The readability checker will analyze your writing and give you scores for Flesch Reading Ease, grade level, sentence length, and more."></textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:0.75rem;color:var(--text-secondary)" id="wordCountDisplay">0 words</span>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-sm btn-secondary" onclick="loadSample()">Load Sample</button>
+          <button class="btn btn-sm btn-secondary" onclick="clearText()">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-lg btn-full" onclick="analyzeReadability()" style="margin-bottom:24px">Analyze Readability</button>
+
+    <!-- Results -->
+    <div class="hidden" id="readabilityResults">
+      <!-- Main Score -->
+      <div style="background:var(--card-bg);border-radius:var(--radius-lg);padding:28px;text-align:center;margin-bottom:24px">
+        <div style="font-size:0.8rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px">Flesch Reading Ease Score</div>
+        <div class="score-ring" style="margin:0 auto 12px">
+          <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#e2e8f0" stroke-width="12"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="12"
+              stroke-dasharray="326.7" stroke-linecap="round" id="fleschRing"/>
+          </svg>
+          <div class="score-value" id="fleschScore" style="font-size:1.75rem">--</div>
+        </div>
+        <div style="font-size:1.1rem;font-weight:700" id="fleschGrade">--</div>
+        <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:4px" id="fleschLabel">Enter text and click Analyze</div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px">
+        <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center">
+          <div style="font-size:0.7rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Avg. Sentence Length</div>
+          <div style="font-size:1.4rem;font-weight:800" id="avgSentLen">--</div>
+          <div style="font-size:0.72rem;color:var(--text-secondary)">target: &lt;20</div>
+        </div>
+        <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center">
+          <div style="font-size:0.7rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Passive Voice</div>
+          <div style="font-size:1.4rem;font-weight:800" id="passivePct">--</div>
+          <div style="font-size:0.72rem;color:var(--text-secondary)">target: &lt;15%</div>
+        </div>
+        <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center">
+          <div style="font-size:0.7rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Grade Level</div>
+          <div style="font-size:1.4rem;font-weight:800" id="gradeLevel">--</div>
+          <div style="font-size:0.72rem;color:var(--text-secondary)">target: 7-9</div>
+        </div>
+      </div>
+
+      <!-- Text Stats -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px">
+        <div style="background:var(--card-bg);border-radius:var(--radius);padding:12px;text-align:center">
+          <div style="font-size:0.7rem;color:var(--text-secondary);text-transform:uppercase">Words</div>
+          <div style="font-size:1.2rem;font-weight:700" id="statWords">--</div>
+        </div>
+        <div style="background:var(--card-bg);border-radius:var(--radius);padding:12px;text-align:center">
+          <div style="font-size:0.7rem;color:var(--text-secondary);text-transform:uppercase">Sentences</div>
+          <div style="font-size:1.2rem;font-weight:700" id="statSentences">--</div>
+        </div>
+        <div style="background:var(--card-bg);border-radius:var(--radius);padding:12px;text-align:center">
+          <div style="font-size:0.7rem;color:var(--text-secondary);text-transform:uppercase">Paragraphs</div>
+          <div style="font-size:1.2rem;font-weight:700" id="statParagraphs">--</div>
+        </div>
+        <div style="background:var(--card-bg);border-radius:var(--radius);padding:12px;text-align:center">
+          <div style="font-size:0.7rem;color:var(--text-secondary);text-transform:uppercase">Syllables</div>
+          <div style="font-size:1.2rem;font-weight:700" id="statSyllables">--</div>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div style="background:var(--card-bg);border-radius:var(--radius);padding:20px">
+        <div style="font-size:0.85rem;font-weight:700;margin-bottom:12px">Improvement Tips</div>
+        <ul id="improvementTips" style="padding-left:16px;font-size:0.88rem;color:var(--text-secondary);line-height:2"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>How to Use This Readability Checker</h2>
+    <ol>
+      <li><strong>Paste your content</strong> — Copy your blog post, article, or any text and paste it into the text area.</li>
+      <li><strong>Click Analyze</strong> — The tool instantly calculates readability scores and statistics.</li>
+      <li><strong>Review your scores</strong> — Check your Flesch Reading Ease score (aim for 60–70) and grade level (aim for 7–9).</li>
+      <li><strong>Apply the tips</strong> — Follow the improvement suggestions to make your content more readable.</li>
+    </ol>
+
+    <h2>Why Readability Matters for SEO</h2>
+    <p>Google's algorithms increasingly prioritize user experience signals — and readability is a big part of that. Content that's easy to read keeps visitors on your page longer, reduces bounce rates, and increases the likelihood of social shares and backlinks. Readable content also performs better with voice search, as it more closely matches natural language queries.</p>
+
+    <h2>Understanding the Scores</h2>
+    <ul>
+      <li><strong>Flesch Reading Ease (0–100)</strong> — Higher is easier to read. 90–100: Very Easy (5th grade). 60–70: Standard (8th–9th grade, ideal for most blogs). 0–30: Very Difficult (college graduate level).</li>
+      <li><strong>Flesch-Kincaid Grade Level</strong> — The U.S. school grade level needed to understand the text. Aim for grade 7–9 for general audiences.</li>
+      <li><strong>Average Sentence Length</strong> — Shorter sentences (under 20 words) are easier to process. Mix short and medium sentences for rhythm.</li>
+      <li><strong>Passive Voice</strong> — Too much passive voice makes writing feel distant and bureaucratic. Keep it under 15%.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">What is a good Flesch Reading Ease score for blog content?</div>
+      <div class="faq-answer">For general blog content, aim for a Flesch Reading Ease score of 60–70. This corresponds to an 8th–9th grade reading level, which is comfortable for most adult readers online. Technical or academic content may naturally score lower.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How is the Flesch score calculated?</div>
+      <div class="faq-answer">The formula is: 206.835 − 1.015 × (words/sentences) − 84.6 × (syllables/words). It considers average sentence length and average syllables per word. Shorter sentences and words with fewer syllables produce higher (better) scores.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Does readability directly affect Google rankings?</div>
+      <div class="faq-answer">Google has not confirmed readability as a direct ranking factor. However, readable content indirectly improves rankings by increasing dwell time, reducing bounce rate, and generating more backlinks and shares — all of which are confirmed ranking signals.</div>
+    </div>
+
+    <h2 style="margin-top:32px">Related Tools</h2>
+    <ul>
+      <li><a href="/tools/ai-title-generator/">AI Title Generator</a> — Generate engaging titles for your readable content.</li>
+      <li><a href="/tools/serp-preview/">SERP Preview Tool</a> — Preview how your page looks in search results.</li>
+    </ul>
+  </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/utils.js"></script>
+<script src="/assets/js/components.js"></script>
+<script>
+(function() {
+  // Flesch Reading Ease formula
+  function calcFlesch(words, sentences, syllables) {
+    if (words === 0 || sentences === 0) return 0;
+    return 206.835 - 1.015 * (words / sentences) - 84.6 * (syllables / words);
+  }
+
+  // Flesch-Kincaid Grade Level
+  function calcGradeLevel(words, sentences, syllables) {
+    if (words === 0 || sentences === 0) return 0;
+    return 0.39 * (words / sentences) + 11.8 * (syllables / words) - 15.59;
+  }
+
+  // Count syllables in a word (approximate)
+  function countSyllables(word) {
+    word = word.toLowerCase().replace(/[^a-z]/g, '');
+    if (word.length <= 3) return 1;
+    word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+    word = word.replace(/^y/, '');
+    var m = word.match(/[aeiouy]{1,2}/g);
+    return m ? m.length : 1;
+  }
+
+  // Passive voice detection (simple heuristic: "is/are/was/were/been/being" + past participle)
+  function countPassive(text) {
+    var passivePatterns = [
+      /\b(?:is|are|was|were|been|being|am)\s+\w+(?:ed|en|t)\b/gi,
+      /\b(?:is|are|was|were|been|being|am)\s+\w+(?:ed|en|d)\b/gi
+    ];
+    var count = 0;
+    for (var i = 0; i < passivePatterns.length; i++) {
+      var matches = text.match(passivePatterns[i]);
+      if (matches) count += matches.length;
+    }
+    return count;
+  }
+
+  window.analyzeReadability = function() {
+    var text = document.getElementById('contentText').value.trim();
+    if (!text) { showToast('Please enter some text to analyze', 'error'); return; }
+
+    // Word count
+    var words = text.split(/\s+/).filter(function(w) { return w.length > 0; });
+    var wordCount = words.length;
+
+    // Sentence count
+    var sentences = text.split(/[.!?]+/).filter(function(s) { return s.trim().length > 0; });
+    var sentenceCount = sentences.length;
+
+    // Paragraph count
+    var paragraphs = text.split(/\n\s*\n/).filter(function(p) { return p.trim().length > 0; });
+
+    // Syllable count
+    var totalSyllables = 0;
+    words.forEach(function(w) { totalSyllables += countSyllables(w); });
+
+    // Passive voice
+    var passiveCount = countPassive(text);
+
+    // Calculate scores
+    var flesch = sentenceCount > 0 ? calcFlesch(wordCount, sentenceCount, totalSyllables) : 0;
+    flesch = Math.max(0, Math.min(120, Math.round(flesch)));
+
+    var gradeLevel = sentenceCount > 0 ? calcGradeLevel(wordCount, sentenceCount, totalSyllables) : 0;
+    gradeLevel = Math.round(gradeLevel * 10) / 10;
+
+    var avgSentLen = sentenceCount > 0 ? Math.round(wordCount / sentenceCount * 10) / 10 : 0;
+    var passivePct = wordCount > 0 ? Math.round(passiveCount / wordCount * 100) : 0;
+
+    // Display
+    displayScore(flesch);
+    displayStats(avgSentLen, passivePct, gradeLevel);
+    displayTextStats(wordCount, sentenceCount, paragraphs.length, totalSyllables);
+    displayTips(flesch, avgSentLen, passivePct, gradeLevel);
+
+    document.getElementById('readabilityResults').classList.remove('hidden');
+  };
+
+  function displayScore(score) {
+    var grade, color;
+    if (score >= 90) { grade = 'Very Easy'; color = '#16a34a'; }
+    else if (score >= 80) { grade = 'Easy'; color = '#22c55e'; }
+    else if (score >= 70) { grade = 'Fairly Easy'; color = '#84cc16'; }
+    else if (score >= 60) { grade = 'Standard'; color = '#ca8a04'; }
+    else if (score >= 50) { grade = 'Fairly Difficult'; color = '#ea580c'; }
+    else if (score >= 30) { grade = 'Difficult'; color = '#dc2626'; }
+    else { grade = 'Very Difficult'; color = '#991b1b'; }
+
+    document.getElementById('fleschScore').textContent = score;
+    document.getElementById('fleschScore').style.color = color;
+    document.getElementById('fleschGrade').textContent = grade;
+    document.getElementById('fleschGrade').style.color = color;
+
+    var ring = document.getElementById('fleschRing');
+    ring.style.stroke = color;
+    var dash = 326.7 * (score / 100);
+    ring.setAttribute('stroke-dasharray', dash + ' 326.7');
+
+    var label;
+    if (score >= 60) label = 'Great! Your content is easy to read.';
+    else if (score >= 50) label = 'Decent readability. Some improvements possible.';
+    else label = 'Consider simplifying your writing.';
+    document.getElementById('fleschLabel').textContent = label;
+  }
+
+  function displayStats(avgSentLen, passivePct, gradeLevel) {
+    var elAvg = document.getElementById('avgSentLen');
+    elAvg.textContent = avgSentLen;
+    elAvg.style.color = avgSentLen <= 20 ? '#16a34a' : avgSentLen <= 25 ? '#ca8a04' : '#dc2626';
+
+    var elPassive = document.getElementById('passivePct');
+    elPassive.textContent = passivePct + '%';
+    elPassive.style.color = passivePct <= 15 ? '#16a34a' : passivePct <= 25 ? '#ca8a04' : '#dc2626';
+
+    var elGrade = document.getElementById('gradeLevel');
+    elGrade.textContent = gradeLevel;
+    elGrade.style.color = (gradeLevel >= 7 && gradeLevel <= 9) ? '#16a34a' : (gradeLevel <= 12) ? '#ca8a04' : '#dc2626';
+  }
+
+  function displayTextStats(words, sentences, paragraphs, syllables) {
+    document.getElementById('statWords').textContent = words;
+    document.getElementById('statSentences').textContent = sentences;
+    document.getElementById('statParagraphs').textContent = paragraphs;
+    document.getElementById('statSyllables').textContent = syllables;
+  }
+
+  function displayTips(flesch, avgSentLen, passivePct, gradeLevel) {
+    var tips = [];
+    if (flesch < 60) {
+      tips.push('Use shorter sentences. Break long sentences into two.');
+      tips.push('Replace complex words with simpler alternatives. For example, use "help" instead of "facilitate".');
+    }
+    if (avgSentLen > 20) {
+      tips.push('Your average sentence is ' + avgSentLen + ' words. Try to keep it under 20 for better readability.');
+    }
+    if (passivePct > 15) {
+      tips.push('Reduce passive voice. Instead of "The report was written by the team," use "The team wrote the report."');
+    }
+    if (gradeLevel > 9) {
+      tips.push('Your content reads at grade level ' + gradeLevel + '. Aim for grade 7-9 for general audiences.');
+    }
+    if (tips.length === 0) {
+      tips.push('Your content is already quite readable. Consider adding transition words to improve flow.');
+      tips.push('Use varied sentence lengths to create rhythm — mix short, punchy sentences with longer, descriptive ones.');
+    }
+
+    var list = document.getElementById('improvementTips');
+    list.innerHTML = tips.map(function(t) { return '<li>' + t + '</li>'; }).join('');
+  }
+
+  window.loadSample = function() {
+    document.getElementById('contentText').value =
+      'Content marketing is an essential strategy for businesses seeking growth in the digital age. ' +
+      'It helps companies attract and retain customers by creating valuable and relevant content. ' +
+      'Many organizations struggle with content creation because they lack clear direction. ' +
+      'A well-planned content strategy can solve this problem. ' +
+      'Start by defining your target audience. Understand what they need and what problems they face. ' +
+      'Then create content that addresses those needs directly. ' +
+      'Blog posts, videos, and social media updates are all effective formats. ' +
+      'Measure your results regularly and adjust your approach based on data. ' +
+      'The most successful content marketers are those who stay consistent and patient. ' +
+      'Building an audience takes time but the long-term rewards are significant.';
+    document.getElementById('wordCountDisplay').textContent =
+      document.getElementById('contentText').value.trim().split(/\s+/).filter(function(w){return w.length>0}).length + ' words';
+  };
+
+  window.clearText = function() {
+    document.getElementById('contentText').value = '';
+    document.getElementById('readabilityResults').classList.add('hidden');
+    document.getElementById('wordCountDisplay').textContent = '0 words';
+  };
+
+  // Live word count
+  document.getElementById('contentText').addEventListener('input', function() {
+    var wc = this.value.trim() ? this.value.trim().split(/\s+/).filter(function(w){return w.length>0}).length : 0;
+    document.getElementById('wordCountDisplay').textContent = wc + ' word' + (wc !== 1 ? 's' : '');
+  });
+})();
+</script>
+</body>
+</html>

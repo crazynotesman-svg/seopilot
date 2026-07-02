@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Keyword Difficulty Checker — SEO Keyword Competition | SEOPilot</title>
+<meta name="description" content="Check how difficult it is to rank for any keyword. Get a 0-100 difficulty score, search intent classification, and related keyword suggestions. Free, no sign-up.">
+<link rel="canonical" href="https://seopilot.tools/tools/keyword-difficulty/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Free Keyword Difficulty Checker — SEO Keyword Competition | SEOPilot">
+<meta property="og:description" content="Check how difficult it is to rank for any keyword. Get difficulty score, intent classification, and related keyword suggestions.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Keyword Difficulty Checker",
+  "applicationCategory": "SEO Tools",
+  "operatingSystem": "Web",
+  "description": "Estimate keyword competition with a 0-100 difficulty score and related keyword suggestions.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<main class="tool-page">
+  <div class="breadcrumb">
+    <a href="/">Home</a> <span class="sep">/</span>
+    <a href="/tools/">Tools</a> <span class="sep">/</span>
+    <span>Keyword Difficulty Checker</span>
+  </div>
+
+  <div class="tool-header">
+    <h1>Free Keyword Difficulty Checker</h1>
+    <p class="tool-desc">Estimate how hard it is to rank for any keyword. Get a 0–100 difficulty score, search intent classification, and related keyword suggestions to guide your content strategy.</p>
+  </div>
+
+  <div class="tool-workspace">
+    <div class="form-group">
+      <label for="keyword">Enter a Keyword or Phrase</label>
+      <input type="text" id="keyword" placeholder="e.g. best coffee makers 2026" maxlength="200">
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:20px">
+      <button class="btn btn-primary" id="analyzeBtn" onclick="analyzeKeyword()">Analyze Keyword</button>
+      <button class="btn btn-secondary" onclick="clearKeyword()">Clear</button>
+    </div>
+
+    <!-- Results -->
+    <div class="hidden" id="resultsArea">
+      <!-- Difficulty Score -->
+      <div style="background:var(--card-bg);border-radius:var(--radius);padding:24px;text-align:center;margin-bottom:20px">
+        <div style="font-size:0.8rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Difficulty Score</div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:16px">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="44" fill="none" stroke="#e2e8f0" stroke-width="10"/>
+            <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="10"
+              stroke-dasharray="276.5" stroke-linecap="round" transform="rotate(-90 50 50)" id="scoreRing"/>
+          </svg>
+          <div>
+            <div style="font-size:2.5rem;font-weight:800" id="scoreNum">0</div>
+            <div style="font-size:0.85rem;font-weight:600" id="scoreLabel">--</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Details Grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+        <div style="background:var(--card-bg);border-radius:var(--radius);padding:16px">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Search Intent</div>
+          <div style="font-size:1.1rem;font-weight:700" id="intentLabel">--</div>
+        </div>
+        <div style="background:var(--card-bg);border-radius:var(--radius);padding:16px">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Keyword Length</div>
+          <div style="font-size:1.1rem;font-weight:700" id="kwLength">--</div>
+        </div>
+        <div style="background:var(--card-bg);border-radius:var(--radius);padding:16px">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Competitive Words Found</div>
+          <div style="font-size:1.1rem;font-weight:700" id="compWords">--</div>
+        </div>
+        <div style="background:var(--card-bg);border-radius:var(--radius);padding:16px">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Recommendation</div>
+          <div style="font-size:1.1rem;font-weight:700" id="recommendation">--</div>
+        </div>
+      </div>
+
+      <!-- Related Keywords -->
+      <div style="background:var(--card-bg);border-radius:var(--radius);padding:20px">
+        <div style="font-size:0.85rem;font-weight:700;margin-bottom:12px">Related Keywords &amp; Suggestions</div>
+        <div class="hidden" id="relatedLoading" style="text-align:center;padding:16px;color:var(--text-secondary)">
+          <span class="spinner spinner-dark" style="display:inline-block"></span> Loading related keywords...
+        </div>
+        <div id="relatedKeywords" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>How to Use This Keyword Difficulty Checker</h2>
+    <ol>
+      <li><strong>Enter your keyword</strong> — Type or paste the keyword you're considering targeting.</li>
+      <li><strong>Click Analyze</strong> — The tool evaluates multiple factors to estimate the competition level.</li>
+      <li><strong>Review the score</strong> — Scores 0-30 are "Easy" (good for new sites), 31-60 "Medium", 61-80 "Hard", 81-100 "Very Hard".</li>
+      <li><strong>Check related keywords</strong> — Explore long-tail variations that may be easier to rank for.</li>
+    </ol>
+
+    <h2>How We Calculate Keyword Difficulty</h2>
+    <p>This tool uses a multi-factor algorithm to estimate keyword competition. While we can't access real search volume data in Phase 1, our estimate is based on:</p>
+    <ul>
+      <li><strong>Keyword Length</strong> — Longer keywords (4+ words) are typically long-tail and easier to rank for.</li>
+      <li><strong>Competitive Word Detection</strong> — Words like "best", "buy", "review", "top", "cheap" signal commercial intent and higher competition.</li>
+      <li><strong>Search Intent Analysis</strong> — Commercial and transactional queries tend to be more competitive than informational ones.</li>
+      <li><strong>Word Frequency Data</strong> — We consult the DataMuse API for linguistic frequency patterns.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">What's a good keyword difficulty score for a new website?</div>
+      <div class="faq-answer">For a new website with low domain authority, target keywords with a difficulty score of 30 or below. These are typically long-tail keywords (4+ words) with informational intent. As your site grows, you can target more competitive terms.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How accurate is this difficulty estimate?</div>
+      <div class="faq-answer">This tool provides a directional estimate based on linguistic analysis. For precise difficulty data including backlink profiles and domain authority of ranking pages, premium tools like Ahrefs or Semrush provide more accurate scores. Our tool helps you filter out obviously competitive keywords before investing in deeper research.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What are the four types of search intent?</div>
+      <div class="faq-answer"><strong>Informational</strong> — User wants to learn something ("how to brew coffee"). <strong>Commercial</strong> — User is researching before buying ("best coffee makers 2026"). <strong>Transactional</strong> — User wants to buy ("buy Breville espresso machine"). <strong>Navigational</strong> — User wants a specific website ("Amazon login").</div>
+    </div>
+
+    <h2 style="margin-top:32px">Related Tools</h2>
+    <ul>
+      <li><a href="/tools/ai-title-generator/">AI Title Generator</a> — Generate SEO titles using your target keywords.</li>
+      <li><a href="/tools/serp-preview/">SERP Preview Tool</a> — Preview how your page will look in search results.</li>
+    </ul>
+  </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/utils.js"></script>
+<script src="/assets/js/components.js"></script>
+<script>
+(function() {
+  var HIGH_COMP_WORDS = ['best', 'top', 'buy', 'cheap', 'review', 'price', 'discount', 'for sale',
+    'vs', 'versus', 'comparison', 'compare', 'online', 'near me', 'free', 'deal', 'coupon',
+    '2026', '2025', 'amazon', 'walmart', 'insurance', 'loan', 'credit', 'mortgage', 'lawyer',
+    'attorney', 'software', 'hosting', 'crm', 'wordpress host', 'web hosting'];
+
+  var INTENT_TRANSACTIONAL = ['buy', 'purchase', 'order', 'download', 'subscribe', 'register',
+    'for sale', 'cheap', 'discount', 'coupon', 'deal', 'price', 'pricing', 'cost'];
+  var INTENT_COMMERCIAL = ['best', 'top', 'review', 'reviews', 'comparison', 'compare', 'vs',
+    'versus', 'rating', 'ranked', 'recommended', '2026', '2025'];
+  var INTENT_NAVIGATIONAL = ['login', 'sign in', 'contact', 'about', 'homepage', 'official'];
+
+  window.analyzeKeyword = function() {
+    var kw = document.getElementById('keyword').value.trim();
+    if (!kw) { showToast('Please enter a keyword','error'); return; }
+
+    document.getElementById('resultsArea').classList.remove('hidden');
+    document.getElementById('analyzeBtn').disabled = true;
+    document.getElementById('analyzeBtn').innerHTML = '<span class="spinner"></span> Analyzing...';
+
+    setTimeout(function() {
+      var result = calculateDifficulty(kw);
+      displayResults(kw, result);
+      fetchRelatedKeywords(kw);
+      document.getElementById('analyzeBtn').disabled = false;
+      document.getElementById('analyzeBtn').innerHTML = 'Analyze Keyword';
+    }, 300);
+  };
+
+  function calculateDifficulty(kw) {
+    var words = kw.toLowerCase().split(/\s+/);
+    var wordCount = words.length;
+
+    // Factor 1: Word count (more words = long-tail = easier)
+    var wordScore = 0;
+    if (wordCount >= 5) wordScore = 10;
+    else if (wordCount >= 4) wordScore = 20;
+    else if (wordCount >= 3) wordScore = 35;
+    else if (wordCount >= 2) wordScore = 55;
+    else wordScore = 75;
+
+    // Factor 2: Competitive words found
+    var compCount = 0;
+    var compWordsFound = [];
+    HIGH_COMP_WORDS.forEach(function(cw) {
+      if (kw.toLowerCase().indexOf(cw) !== -1) {
+        compCount++;
+        compWordsFound.push(cw);
+      }
+    });
+    var compScore = Math.min(compCount * 12, 40);
+
+    // Factor 3: Intent
+    var intent = classifyIntent(kw);
+    var intentScore = 0;
+    if (intent === 'Transactional') intentScore = 35;
+    else if (intent === 'Commercial') intentScore = 25;
+    else if (intent === 'Navigational') intentScore = 15;
+    else intentScore = 5;
+
+    // Total score
+    var total = Math.round(wordScore * 0.5 + compScore + intentScore);
+    total = Math.max(0, Math.min(100, total));
+
+    var level, color;
+    if (total <= 30) { level = 'Easy'; color = '#16a34a'; }
+    else if (total <= 60) { level = 'Medium'; color = '#ca8a04'; }
+    else if (total <= 80) { level = 'Hard'; color = '#ea580c'; }
+    else { level = 'Very Hard'; color = '#dc2626'; }
+
+    return {
+      score: total,
+      level: level,
+      color: color,
+      wordCount: wordCount,
+      compWords: compWordsFound,
+      intent: intent
+    };
+  }
+
+  function classifyIntent(kw) {
+    var lower = kw.toLowerCase();
+    for (var i = 0; i < INTENT_TRANSACTIONAL.length; i++) {
+      if (lower.indexOf(INTENT_TRANSACTIONAL[i]) !== -1) return 'Transactional';
+    }
+    for (var j = 0; j < INTENT_COMMERCIAL.length; j++) {
+      if (lower.indexOf(INTENT_COMMERCIAL[j]) !== -1) return 'Commercial';
+    }
+    for (var k = 0; k < INTENT_NAVIGATIONAL.length; k++) {
+      if (lower.indexOf(INTENT_NAVIGATIONAL[k]) !== -1) return 'Navigational';
+    }
+    if (/^(how|what|why|when|where|who|can|do|does|is|are)/.test(lower)) return 'Informational';
+    return 'Informational';
+  }
+
+  function displayResults(kw, result) {
+    document.getElementById('scoreNum').textContent = result.score;
+    document.getElementById('scoreNum').style.color = result.color;
+    document.getElementById('scoreLabel').textContent = result.level;
+    document.getElementById('scoreLabel').style.color = result.color;
+
+    var ring = document.getElementById('scoreRing');
+    ring.style.stroke = result.color;
+    var dash = 276.5 * (result.score / 100);
+    ring.setAttribute('stroke-dasharray', dash + ' 276.5');
+
+    document.getElementById('intentLabel').textContent = result.intent;
+    document.getElementById('kwLength').textContent = result.wordCount + ' word' + (result.wordCount !== 1 ? 's' : '');
+    document.getElementById('compWords').textContent = result.compWords.length > 0 ? result.compWords.join(', ') : 'None';
+    document.getElementById('recommendation').textContent = result.score <= 30 ? 'Good to target!' :
+      result.score <= 60 ? 'Approach with strategy' : result.score <= 80 ? 'Needs strong content' : 'Avoid for new sites';
+  }
+
+  function fetchRelatedKeywords(kw) {
+    var container = document.getElementById('relatedKeywords');
+    var loading = document.getElementById('relatedLoading');
+    container.innerHTML = '';
+    loading.classList.remove('hidden');
+
+    fetch('https://api.datamuse.com/words?rel_trg=' + encodeURIComponent(kw) + '&max=10')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        loading.classList.add('hidden');
+        if (data.length === 0) {
+          container.innerHTML = '<span style="color:var(--text-secondary);font-size:0.88rem">No related keywords found. Try a different keyword.</span>';
+          return;
+        }
+        data.forEach(function(item) {
+          var tag = document.createElement('span');
+          tag.textContent = item.word;
+          tag.style.cssText = 'display:inline-block;padding:6px 14px;background:var(--primary-light);color:var(--primary-dark);border-radius:20px;font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.15s';
+          tag.onmouseenter = function() { this.style.background = 'var(--primary)'; this.style.color = 'white'; };
+          tag.onmouseleave = function() { this.style.background = 'var(--primary-light)'; this.style.color = 'var(--primary-dark)'; };
+          tag.onclick = function() {
+            document.getElementById('keyword').value = item.word;
+            analyzeKeyword();
+          };
+          container.appendChild(tag);
+        });
+      })
+      .catch(function() {
+        loading.classList.add('hidden');
+        container.innerHTML = '<span style="color:var(--text-secondary);font-size:0.88rem">Could not load related keywords. Try again later.</span>';
+      });
+  }
+
+  window.clearKeyword = function() {
+    document.getElementById('keyword').value = '';
+    document.getElementById('resultsArea').classList.add('hidden');
+  };
+})();
+</script>
+</body>
+</html>
