@@ -9,7 +9,7 @@ window.SEOPILOT_CONFIG = {
   // ===== Site Info =====
   siteName: 'SEOPilot',
   siteTagline: 'Free SEO Tools — No Sign-up Required',
-  siteUrl: 'https://seopilot02.crazynotesman.workers.dev',
+  siteUrl: 'https://seopilot.crazynotesman.workers.dev',
   contactEmail: 'crazynotesman-svg@users.noreply.github.com',
   copyrightYear: '2026',
 
