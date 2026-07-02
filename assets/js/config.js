@@ -10,7 +10,7 @@ window.SEOPILOT_CONFIG = {
   siteName: 'SEOPilot',
   siteTagline: 'Free SEO Tools — No Sign-up Required',
   siteUrl: 'https://seopilot.crazynotesman.workers.dev',
-  contactEmail: 'crazynotesman-svg@users.noreply.github.com',
+  contactEmail: 'crazynotesman@gmail.com',
   copyrightYear: '2026',
 
   // ===== AI Provider: DeepSeek =====

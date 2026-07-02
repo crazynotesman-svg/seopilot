@@ -64,7 +64,7 @@
           '<li><a href="/about/">About</a></li>' +
           '<li><a href="/blog/">Blog</a></li>' +
           '<li><a href="/privacy/">Privacy Policy</a></li>' +
-          '<li><a href="mailto:' + (cfg.contactEmail || 'hello@seopilot.tools') + '">Contact</a></li>' +
+          '<li><a href="mailto:' + (cfg.contactEmail || 'crazynotesman@gmail.com') + '">Contact</a></li>' +
         '</ul>' +
       '</div>' +
     '</div>' +
